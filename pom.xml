@@ -28,10 +28,18 @@
 
     <dependencies>
 
+        <!-- Event API -->
         <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>1.5.2</version>
+            <groupId>com.github.WesternPine</groupId>
+            <artifactId>EventAPI</artifactId>
+            <version>e60cae3bd8</version>
+        </dependency>
+
+        <!-- Pipeline -->
+        <dependency>
+            <groupId>com.github.WesternPine</groupId>
+            <artifactId>Pipeline</artifactId>
+            <version>df6c25e38f</version>
         </dependency>
 
         <!-- Better Try -->
@@ -47,6 +55,23 @@
             <artifactId>Sql</artifactId>
             <version>8449a1cd6d</version>
         </dependency>
+
+        <!-- Google Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
+        </dependency>
+
+
+        <!-- Simple WebSocket client -->
+        <dependency>
+            <groupId>org.java-websocket</groupId>
+            <artifactId>Java-WebSocket</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
+        <!-- Spring -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

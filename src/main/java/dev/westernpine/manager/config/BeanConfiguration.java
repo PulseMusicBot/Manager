@@ -1,30 +1,35 @@
 package dev.westernpine.manager.config;
 
+import dev.westernpine.eventapi.EventManager;
 import dev.westernpine.manager.properties.IdentityProperties;
+import dev.westernpine.manager.properties.SqlProperties;
 import dev.westernpine.manager.properties.SystemProperties;
-import dev.westernpine.manager.security.verification.TokenVerifier;
+import dev.westernpine.sql.Sql;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BeanConfiguration {
 
     @Autowired
-    public SystemProperties systemProperties;
-
-    public IdentityProperties identityProperties;
+    private SystemProperties systemProperties;
 
     @Bean
     public IdentityProperties identityProperties() throws Throwable {
-        return identityProperties == null ? identityProperties = new IdentityProperties(systemProperties.get(SystemProperties.IDENTITY)) : identityProperties;
+        return new IdentityProperties(systemProperties.get(SystemProperties.IDENTITY));
     }
 
     @Bean
-    public TokenVerifier tokenVerifier() throws Throwable {
-        return new TokenVerifier(identityProperties());
+    public Sql sql() throws Throwable {
+        SqlProperties sqlProperties = new SqlProperties(systemProperties.get(SystemProperties.IDENTITY));
+        Sql sql = sqlProperties.toSql();
+        return sql;
+    }
+
+    @Bean
+    public EventManager eventManager() {
+        return new EventManager();
     }
 
 }
