@@ -38,7 +38,7 @@ public class PremiumManager {
                             .stream()
                             .filter(SessionProperties::isPremiumMaster)
                             .findAny()
-                            .map(properties -> Try.to(() -> properties.getPipeline().send(new Message().withType(MessageType.REQUEST).write("user.premium")).get(2, TimeUnit.SECONDS))
+                            .map(properties -> Try.to(() -> properties.getPipeline().send(new Message().withType(MessageType.REQUEST).write("user.premium").write(s)).get(2, TimeUnit.SECONDS))
                                         .map(respone -> respone.read(Boolean.class))
                                         .orElse(false))
                             .orElse(false);
