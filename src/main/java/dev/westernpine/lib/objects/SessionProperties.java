@@ -10,11 +10,10 @@ import org.springframework.web.socket.WebSocketSession;
 
 public class SessionProperties {
 
-    @Autowired
-    private EventManager eventManager;
-
     private final WebSocketSession webSocketSession;
     private final Pipeline pipeline;
+    @Autowired
+    private EventManager eventManager;
     private String identity = "";
     private boolean isPremiumMaster;
 

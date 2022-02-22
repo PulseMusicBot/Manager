@@ -1,7 +1,5 @@
-package dev.westernpine.manager.endpoints.backend.config;
+package dev.westernpine.manager.endpoints.backend;
 
-import dev.westernpine.manager.endpoints.backend.handler.BackendHandler;
-import dev.westernpine.manager.endpoints.backend.interceptor.BackendInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

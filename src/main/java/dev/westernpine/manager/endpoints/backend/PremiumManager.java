@@ -1,21 +1,16 @@
-package dev.westernpine.manager.endpoints.backend.premium;
+package dev.westernpine.manager.endpoints.backend;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import dev.westernpine.bettertry.Try;
 import dev.westernpine.lib.objects.SessionProperties;
-import dev.westernpine.manager.endpoints.backend.handler.BackendHandler;
-import dev.westernpine.manager.properties.SqlProperties;
 import dev.westernpine.pipeline.message.Message;
 import dev.westernpine.pipeline.message.MessageType;
-import dev.westernpine.sql.Sql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 @Component
 public class PremiumManager {
@@ -38,9 +33,9 @@ public class PremiumManager {
                             .stream()
                             .filter(SessionProperties::isPremiumMaster)
                             .findAny()
-                            .map(properties -> Try.to(() -> properties.getPipeline().send(new Message().withType(MessageType.REQUEST).write("user.premium")).get(2, TimeUnit.SECONDS))
-                                        .map(respone -> respone.read(Boolean.class))
-                                        .orElse(false))
+                            .map(properties -> Try.to(() -> properties.getPipeline().send(new Message().withType(MessageType.REQUEST).write("user.premium").write(s)).get(2, TimeUnit.SECONDS))
+                                    .map(respone -> respone.read(Boolean.class))
+                                    .orElse(false))
                             .orElse(false);
                 }
             });
@@ -58,9 +53,6 @@ public class PremiumManager {
                 .filter(properties -> !properties.isPremiumMaster())
                 .forEach(properties -> Try.to(() -> properties.getPipeline().send(new Message().write("user.premium.update").write(userId).write(premium))));
     }
-
-
-
 
 
 }

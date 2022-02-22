@@ -11,7 +11,7 @@ public class TokenVerifier {
 
     private Map<String, String> tokenIdentities;
 
-    public TokenVerifier(IdentityProperties identityProperties){
+    public TokenVerifier(IdentityProperties identityProperties) {
         this.tokenIdentities = Mapper.fromString(identityProperties.get(IdentityProperties.IDENTITY_TOKENS), ",", "=");
     }
 

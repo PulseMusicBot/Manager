@@ -1,4 +1,4 @@
-package dev.westernpine.manager.endpoints.backend.handler;
+package dev.westernpine.manager.endpoints.backend;
 
 import dev.westernpine.lib.objects.SessionProperties;
 import dev.westernpine.manager.security.verification.TokenVerifier;
