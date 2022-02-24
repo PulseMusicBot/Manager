@@ -15,6 +15,11 @@ public class TokenVerifier {
         this.tokenIdentities = Mapper.fromString(identityProperties.get(IdentityProperties.IDENTITY_TOKENS), ",", "=");
     }
 
+    /*
+    This is an extremely basic authentication implementation.
+    More professional implementations would usually take place, but this serves the need well enough.
+    This project is not intended to be open to the internet.
+     */
     public String getIdentity(String token) throws VerificationException {
         if (token == null)
             throw new VerificationException("Verification failed. No token present.");
