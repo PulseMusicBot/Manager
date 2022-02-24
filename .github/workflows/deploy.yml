@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: asylum
 
     steps:
@@ -23,5 +23,5 @@ jobs:
       - name: Replace jar.
         run: sudo cp ./target/Manager.jar /home/pulse/manager/Manager.jar
 
-      - name: Start pulse.
+      - name: Start manager.
         run: cd /home/pulse/manager && sudo screen -S manager -dm ./start.sh
