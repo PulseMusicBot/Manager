@@ -3,6 +3,7 @@ package dev.westernpine.lib.objects;
 import dev.westernpine.bettertry.Try;
 import dev.westernpine.eventapi.EventManager;
 import dev.westernpine.lib.events.MessageEvent;
+import dev.westernpine.manager.properties.IdentityProperties;
 import dev.westernpine.pipeline.Pipeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.TextMessage;
@@ -14,8 +15,9 @@ public class SessionProperties {
     private final Pipeline pipeline;
     @Autowired
     private EventManager eventManager;
+    @Autowired
+    private IdentityProperties identityProperties;
     private String identity = "";
-    private boolean isPremiumMaster;
 
     public SessionProperties(WebSocketSession webSocketSession) {
         this.webSocketSession = webSocketSession;
@@ -39,10 +41,6 @@ public class SessionProperties {
     }
 
     public boolean isPremiumMaster() {
-        return isPremiumMaster;
-    }
-
-    public void setPremiumMaster(boolean premiumMaster) {
-        isPremiumMaster = premiumMaster;
+        return this.identity.equals(identityProperties.get(IdentityProperties.PREMIUM_MASTER));
     }
 }

@@ -44,10 +44,6 @@ public class BackendRequestListener implements Listener {
                     if (properties.isPremiumMaster())
                         premiumManager.setPremium(message.read().toString(), message.read(Boolean.class));
                     break;
-                case "session.premiummaster":
-                    if (!backendHandler.getSessions().values().stream().anyMatch(SessionProperties::isPremiumMaster))
-                        properties.setPremiumMaster(message.read(Boolean.class));
-                    break;
                 default:
                     StringBuilder builder = new StringBuilder();
                     while (message.hasNext())
