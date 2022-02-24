@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: asylum
+
+    steps:
+      - name: Checkout code.
+        uses: actions/checkout@v2
+
+      - name: Maven clean install
+        run: mvn clean install --file pom.xml
+          
+      - name: Stop the manager.
+        run: sudo screen -XS manager quit
+
+      - name: Replace jar.
+        run: sudo cp ./target/Manager.jar /home/pulse/manager/Manager.jar
+
+      - name: Start pulse.
+        run: cd /home/pulse/manager && sudo screen -S manager -dm ./start.sh
