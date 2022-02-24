@@ -49,13 +49,6 @@
             <version>aeaac5932a</version>
         </dependency>
 
-        <!-- Sql API -->
-        <dependency>
-            <groupId>com.github.WesternPine</groupId>
-            <artifactId>Sql</artifactId>
-            <version>8449a1cd6d</version>
-        </dependency>
-
         <!-- Google Guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
